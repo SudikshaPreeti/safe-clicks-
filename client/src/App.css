@@ -1,0 +1,240 @@
+/* client/src/App.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #f8fafc;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f172a;
+  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
+  overflow-x: hidden;
+}
+
+
+
+:root {
+  --bg-color: #0f172a;       /* Dark Slate */
+  --card-bg: #1e293b;        /* Lighter Slate */
+  --text-main: #f8fafc;      /* Almost White */
+  --text-muted: #94a3b8;     /* Grey */
+  --primary: #3b82f6;        /* Bright Blue */
+  --primary-hover: #2563eb;
+  --safe: #10b981;           /* Green */
+  --suspicious: #f59e0b;     /* Orange */
+  --dangerous: #ef4444;      /* Red */
+}
+
+/* 1. Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Full Page Centering & Background */
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
+  overflow-x: hidden;
+}
+
+/* 3. Main Card Styling */
+.container {
+  background: var(--card-bg);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle top border glow to the card */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+}
+
+h1 { 
+  margin: 0 0 0.5rem 0; 
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.subtitle { 
+  color: var(--text-muted); 
+  margin-bottom: 2.5rem; 
+  font-size: 1.1rem; 
+}
+
+/* 4. Input and Button Group */
+.input-group { 
+  display: flex; 
+  gap: 12px; 
+  margin-bottom: 2rem; 
+  background: #0f172a;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  transition: border-color 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+input {
+  flex: 1;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+}
+
+input::placeholder { color: #475569; }
+
+button {
+  padding: 12px 28px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+}
+
+button:hover:not(:disabled) { 
+  background-color: var(--primary-hover); 
+  transform: translateY(-1px);
+}
+
+button:disabled { 
+  opacity: 0.7; 
+  cursor: not-allowed; 
+}
+
+/* 5. Loading Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 6. Result Card Styles */
+.result-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: left;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #334155;
+}
+
+.result-card.safe { border-left: 6px solid var(--safe); }
+.result-card.suspicious { border-left: 6px solid var(--suspicious); }
+.result-card.dangerous { border-left: 6px solid var(--dangerous); }
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.result-header h2 { 
+  margin: 0; 
+  font-size: 1.5rem; 
+  font-weight: 700;
+}
+
+.result-card.safe .result-header h2 { color: var(--safe); }
+.result-card.suspicious .result-header h2 { color: var(--suspicious); }
+.result-card.dangerous .result-header h2 { color: var(--dangerous); }
+
+.score-badge {
+  background: #0f172a;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #334155;
+}
+
+.score-bar {
+  height: 8px;
+  background-color: #0f172a;
+  border-radius: 4px;
+  margin: 12px 0 20px 0;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.result-card.safe .fill { background-color: var(--safe); }
+.result-card.suspicious .fill { background-color: var(--suspicious); }
+.result-card.dangerous .fill { background-color: var(--dangerous); }
+
+h3 { 
+  font-size: 0.9rem; 
+  color: var(--text-muted); 
+  text-transform: uppercase; 
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+ul { 
+  padding-left: 20px; 
+  font-size: 0.95rem; 
+  line-height: 1.5;
+  margin: 0;
+}
+
+li { margin-bottom: 8px; color: #cbd5e1; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

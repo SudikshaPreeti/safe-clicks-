@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Production build
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# Mac/System files
+.DS_Store
